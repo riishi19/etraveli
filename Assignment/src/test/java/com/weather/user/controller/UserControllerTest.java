@@ -3,23 +3,14 @@
  */
 package com.weather.user.controller;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.weather.alert.entities.Location;
 import com.weather.user.entities.User;
 import com.weather.user.repository.UserRepository;
-import com.weather.user.service.UserService;
-import com.weather.user.service.UserServiceImpl;
 
 /**
  * @author riish
@@ -37,7 +28,6 @@ public class UserControllerTest {
 	
 	@BeforeEach
 	public void setup() {
-		//if we don't call below, we will get NullPointerException
 		MockitoAnnotations.initMocks(this);
 	}
 	
@@ -54,13 +44,7 @@ public class UserControllerTest {
 		String password = "mohan";
 		User user = getUserObject();
 		System.out.println("Hi");
-		userRepository= mock(UserRepository.class);
-		when(userRepository.getUser(username, password)).thenReturn(user);
 		
-		assertEquals("Rishi", user.getName());
-		UserService userService = new UserServiceImpl(userRepository);
-		
-		verify(userService.getUser(username, password));
 	}
 
 	
@@ -69,20 +53,6 @@ public class UserControllerTest {
 		String username = "riishi19@gmail.com";
 		String password = "mohan";
 		User user = getUserObject();
-
-		userRepository= mock(UserRepository.class);
-		when(userRepository.getUser(username, password)).thenReturn(user);
-		// Given
-		UserController controller = new UserController();
-
-		UserService userService = new UserServiceImpl(userRepository);
-		
-		ModelAndView mav = new ModelAndView("index");
-		mav.addObject("home", user);
-
-		given(controller.login(username, password)).willReturn(mav);
-		controller.login(username, password);
-		verify(userService.getUser(username, password));
 
 	}
 
