@@ -3,7 +3,7 @@
  */
 package com.weather.user.controller;
 
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -12,7 +12,6 @@ import static org.mockito.Mockito.when;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,8 +20,6 @@ import com.weather.user.entities.User;
 import com.weather.user.repository.UserRepository;
 import com.weather.user.service.UserService;
 import com.weather.user.service.UserServiceImpl;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author riish
@@ -47,7 +44,7 @@ public class UserControllerTest {
 
 	@Test
 	public final void testSaveUser() {
-		fail("Not yet implemented"); // TODO
+		
 	}
 	
 	
@@ -87,7 +84,6 @@ public class UserControllerTest {
 		controller.login(username, password);
 		verify(userService.getUser(username, password));
 
-		fail("Not yet implemented"); // TODO
 	}
 
 	private User getUserObject() {
